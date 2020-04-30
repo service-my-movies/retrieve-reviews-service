@@ -32,10 +32,14 @@ public class ReviewsService implements IReviewsService {
 	public ReviewsDTO getAPI_Reviews(String movie_id) {
 
 		ReviewsDTO reviews = null;
+		
+		String url = BASE_URL+movie_id+"/reviews"+API_KEY;
+		
+		LOGGER.info("@Get getAPI_Reviews Service URL : " + url);
 
 		try {
 
-			reviews = restTemplate.getForObject(BASE_URL+movie_id+"/reviews"+API_KEY, ReviewsDTO.class);
+			reviews = restTemplate.getForObject(url, ReviewsDTO.class);
 
 		} catch (Exception e) {
 			LOGGER.error("Unexpected Error From Service: getAPI_Reviews: " + e);
